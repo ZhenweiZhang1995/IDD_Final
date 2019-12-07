@@ -84,6 +84,6 @@ async function labelDetect(input) {
 }
 ```
 
-
+## Video demo of our project (https://youtu.be/GHw9GIukmL4)
 
  
