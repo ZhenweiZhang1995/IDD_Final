@@ -151,18 +151,6 @@ io.on('connect', function(socket) {
 
     console.log('making a making a picture at'+ imageName); // Second, the name is logged to the console.
 
-    //Third, the picture is  taken and saved to the `public/`` folder
-//    NodeWebcam.capture('public/'+imageName, opts, function( err, data ) {
-//    io.emit('newPicture',(imageName+'.jpg')); ///Lastly, the new name is send to the client web browser.
-//    var foundDog = labelDetect('/home/pi/IDD-Fa19-Lab7/public/'+imageName+'.jpg');
-//    if(foundDog){
-//	console.log("hahahah");
-//        serial.write('R');
-//        io.emit('detectDogs');
-//    }else{
-//	console.log("ooooooooooooooooooo");
-//        io.emit('noDog');
-//    }
       NodeWebcam.capture('public/'+imageName, opts, async function( err, data ) {
           io.emit('newPicture',(imageName+'.jpg'));
           let foundDog = await labelDetect('/home/pi/IDD-Fa19-Lab7/public/'+imageName+'.jpg').catch( e => {console.error(e)});
@@ -170,7 +158,6 @@ io.on('connect', function(socket) {
                serial.write('R');
                io.emit('detectDogs');
           }else{
-		console.log("haha");
                 io.emit('noDog');
           }
       });
